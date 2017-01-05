@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 Verify student hours
+
+    table.table.table-bordered
+        tr
+            th Student
+            th Select
+        each s in students
+            tr
+                td= s.name.first + " " + s.name.last
+                td
+                    button.btn.btn-primary(onclick="studentHours(" + s.userid + ")") Verify hours
+    form.hidden#hiddenForm(action="" method="post")
+block scripts
+    script(src="../js/verifyhours.js")

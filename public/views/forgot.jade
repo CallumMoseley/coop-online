@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Password recovery
+    form(action="" method="post")
+        .form-group
+            label(for="email") Email address:
+            input.form-control#email(type="text" name="email" placeholder="someone@example.com")
+        input(type="submit" class="btn btn-default" value="Recover")

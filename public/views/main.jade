@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    p.text-center.text-danger= message
+    p= "Logged in as " + user.name.first + " " + user.name.last
+    a.btn.btn-default(href="/logout") Log out
+    h2 Actions
+    if user.role === "Student"
+        label Find your supervisor:
+        br
+        a.btn.btn-primary(href="/supervisor") Search
+        br
+        br
+        label Log your hours:
+        br
+        a.btn.btn-primary(href="/hours") Go
+    if user.role === "Supervisor"
+        label Verify students hours:
+        br
+        a.btn.btn-primary(href="/verifyhours") Go
+    if user.role === "Teacher"
+        label View students hours:
+        br
+        a.btn.btn-primary(href="/studenthours") Go
+        br
+        br
+        label View supervisors:
+        br
+        a.btn.btn-primary(href="/viewsupervisors") Go
+        br
+        br
+        label Verify other teachers:
+        br
+        a.btn.btn-primary(href="/verifyteachers") Go

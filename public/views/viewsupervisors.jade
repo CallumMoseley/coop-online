@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 Supervisors
+
+    table.table.table-bordered
+        tr
+            th Name
+            th Email
+            th Company
+            th Address
+            th Phone
+            th Job sector
+        each s in supervisors
+            tr
+                td= s.name.first + ' ' + s.name.last
+                td= s.username
+                td= s.company.name
+                td= s.company.address
+                td= s.company.phone
+                td= s.company.type

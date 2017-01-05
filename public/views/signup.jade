@@ -1,0 +1,69 @@
+extends layout
+
+block content
+    h1 Sign up for Co-op Online
+
+    form#signup-form(action="/signup" method="post")
+        .form-group
+            label(for="select-role") Role:
+            select.form-control#select-role(name="role")
+                option Student
+                option Supervisor
+                option Teacher
+        .form-group
+            .form-group
+                label(for="fname") First name:
+                input.form-control#fname(type="text" name="fname" placeholder="John")
+            .form-group
+                label(for="lname") Last name:
+                input.form-control#lname(type="text" name="lname" placeholder="Smith")
+        .form-group
+            label(for="email") Email address:
+            input.form-control#email(type="text" name="email" placeholder="someone@example.com")
+        .form-group
+            label(for="password") Password:
+            input.form-control#password(type="password" name="password")
+        .form-group
+            label(for="confirm") Confirm password:
+            input.form-control#confirm(type="password" name="confirm")
+        .form-group.teacher.student
+            label(for="select-school") School:
+            select.form-control#select-school(name="school")
+                each school in schools
+                    option=school.name
+        .form-group.supervisor
+            h3 Company Information
+            .form-group
+                label(for="cname") Company name:
+                input.form-control.super#cname(type="text" name="cname")
+            .form-group
+                label(for="addr") Address:
+                input.form-control.super#addr(type="text" name="addr")
+            .form-group
+                label(for="phone") Phone:
+                input.form-control.super#phone(type="text" name="phone")
+            .form-group
+                label(for="type") Job sector:
+                select.form-control.super#type(name="type")
+                    option Accounting & Auditing
+                    option Administrative & Support Services
+                    option Construction, Trades & Mining
+                    option Customer Service & Call Center
+                    option Engineering
+                    option Human Resources
+                    option Information Technology
+                    option Manufacturing & Production
+                    option Sales
+                    option Warehousing & Distribution
+        .form-group.student
+            label(for="semester-select") Semester:
+            select.form-control#semester-select(name="semester")
+                option 1
+                option 2
+        strong.teacher Before you can use this account, it must be approved by another teacher or an admin.
+        br
+        br
+        input(type="submit" class="btn btn-default" value="Sign Up")
+
+block scripts
+    script(src="../js/signup.js")

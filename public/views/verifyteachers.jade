@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1 Verify teachers
+
+    p Any new user that creates a teacher account must be verified by an existing teacher before they can use the account.
+    p Use this page to review and verify any users that have signed up as a teacher
+
+    table.table.table-bordered
+        tr
+            th Student
+            th Email
+            th Select
+        each t in teachers
+            tr
+                td= t.name.first + " " + t.name.last
+                td= t.username
+                td
+                    button.btn.btn-primary(onclick="verifyTeacher(" + t.userid + ")") Verify
+    form.hidden#hiddenForm(action="" method="post")
+block scripts
+    script(src="../js/verifyteachers.js")

@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    .container
+        h1 Track your hours
+        a.btn.btn-primary(href='/viewhours') View logged hours
+        h3 Recent hours
+        table.table.table-bordered
+            tr
+                th Date
+                th Hours
+                th Verified
+            - var i = 0
+            while i < 5 && i < user.hourLog.length
+                tr
+                    td= user.hourLog[i].date.toDateString()
+                    td= user.hourLog[i].hours
+                    td= user.hourLog[i].verified ? 'Yes' : 'No'
+                    - i++
+
+        h2 Log hours
+        p.text-center= message
+        form(action="/hours" method="post")
+            .form-group
+                label(for="year") Year:
+                if user.semester === 1 && new Date().getMonth() < 1
+                    input.form-control#year(type="number" name="year" value=new Date().getFullYear() max=new Date().getFullYear() min=new Date().getFullYear() - 1)
+                else
+                    input.form-control#year(type="number" name="year" value=new Date().getFullYear() readonly)
+            .form-group
+                label(for="month") Month:
+                select.form-control#month(name="month")
+                    if user.semester === 1
+                        option September
+                        option October
+                        option November
+                        option December
+                        option January
+                    else if user.semester === 2
+                        option February
+                        option March
+                        option April
+                        option May
+                        option June
+            .form-group
+                label(for="day") Day:
+                input.form-control#day(type="number" name="day" min="1" max="31")
+            .form-group
+                label(for="hours") Hours:
+                input.form-control#hours(type="number" name="hours" min="0" max="24" step="0.5")
+            input.btn.btn-primary(type="submit" value="Submit")

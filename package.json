@@ -1,0 +1,34 @@
+{
+  "name": "coop-online",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "connect-flash": "^0.1.1",
+    "cookie-session": "^1.2.0",
+    "crypto": "0.0.3",
+    "debug": "^2.2.0",
+    "express": "~4.13.1",
+    "express-jade": "0.0.3",
+    "jade": "^1.11.0",
+    "mongodb": "^2.0.48",
+    "mongoose": "^4.2.4",
+    "mongoose-auto-increment": "^5.0.1",
+    "nodemailer": "^1.10.0",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^3.1.0",
+    "validator": "^4.2.1"
+  },
+  "description": "An online system for logging co-op hours",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "callum.moseley1@gmail.com",
+  "license": "ISC",
+  "engines": {
+    "node": "5.0.0"
+  }
+}

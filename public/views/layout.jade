@@ -1,0 +1,61 @@
+doctype
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+        meta(name="description" content="An online system for logging high school co-op hours.")
+        meta(name="author" content="Callum Moseley")
+
+        title Co-op Online
+
+        // Bootstrap core CSS
+        link(href="css/bootstrap.min.css" rel="stylesheet")
+    body
+        nav.navbar.navbar-inverse.navbar-static-top
+            div.container-fluid
+                div.navbar-header
+                    a.navbar-brand(href='/') Co-op Online
+                ul.nav.navbar-nav
+                    if user
+                        li
+                            a(href="/main") Main
+                        li
+                            a(href="/profile") Profile
+                        if user.role === "Student"
+                            li
+                                a(href="/hours") Hours
+                            li
+                                a(href="/supervisor") Supervisors
+                        if user.role === "Supervisor"
+                            li
+                                a(href="/verifyhours") Hours
+                        if user.role === "Teacher"
+                            li
+                                a(href="/studenthours") Students
+                            li
+                                a(href="/viewsupervisors") Supervisors
+                    else
+                        li
+                            a(href="/login") Login
+                        li
+                            a(href="/signup") Sign up
+        if messages
+            if messages.error
+                each e in messages.error
+                    p.text-center.text-danger= e
+            if messages.info
+                each i in messages.info
+                    p.text-center.text-info= i
+            if messages.success
+                each s in messages.success
+                    p.text-center.text-success= s
+        .container
+            block content
+
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+        script(src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js")
+        script(src="../js/bootstrap.min.js")
+
+        block scripts

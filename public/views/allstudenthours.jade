@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1 Student hours
+    br
+    table.table.table-bordered
+        tr
+            th Student
+            th Supervisor
+            th Total logged hours
+            th Total verified hours
+            th View all hours
+        for s in students
+            tr
+                td= s.name.first + ' ' + s.name.last
+                td= s.superName
+                td= s.hourLog.reduce(function(prev, cur) { return prev + cur.hours }, 0)
+                td= s.hourLog.reduce(function(prev, cur) { return prev + (cur.verified ? cur.hours : 0) }, 0)
+                td
+                    button.btn.btn-primary(onclick="getStudent(" + s.userid + ")") Select
+    form.hidden#hiddenForm(action="" method="post")
+
+block scripts
+    script(src="../js/allstudenthours.js")

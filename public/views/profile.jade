@@ -1,0 +1,53 @@
+extends layout
+
+block content
+        h1 Edit your user information
+
+        form#profile-form(action="" method="post")
+            .form-group
+                label(for="fname")= "First name: " + user.name.first
+                input.form-control#fname(type="text" name="fname")
+            .form-group
+                label(for="lname")= "Last name: " + user.name.last
+                input.form-control#lname(type="text" name="lname")
+            .form-group
+                label(for="password") Password:
+                input.form-control#password(type="password" name="password")
+            .form-group
+                label(for="confirm") Confirm Password:
+                input.form-control#confirm(type="password")
+            if user.role === "Student"
+                label(for="semester") Semester:
+                select.form-control#semester(name="semester")
+                    option
+                    option 1
+                    option 2
+            if user.role === "Supervisor"
+                h2 Company
+                .form-group
+                    label(for="cname")= "Name: " + user.company.name
+                    input.form-control#cname(type="text" name="cname")
+                .form-group
+                    label(for="address")= "Address: " + user.company.address
+                    input.form-control#address(type="text" name="address")
+                .form-group
+                    label(for="phone")= "Phone: " + user.company.phone
+                    input.form-control#phone(type="text" name="phone")
+                .form-group
+                    label(for="type")= "Job sector: " + user.company.type
+                    select.form-control#type(name="type")
+                        option
+                        option Accounting & Auditing
+                        option Administrative & Support Services
+                        option Construction, Trades & Mining
+                        option Customer Service & Call Center
+                        option Engineering
+                        option Human Resources
+                        option Information Technology
+                        option Manufacturing & Production
+                        option Sales
+                        option Warehousing & Distribution
+            input.btn.btn-default(type="submit" value="Submit")
+
+block scripts
+    script(src="../js/profile.js")

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    h1#name(data-id=student.userid)= "Verify hours for " + student.name.first + " " + student.name.last
+    br
+    p.text-center#message
+    br
+    button.btn.btn-primary(onClick="verify()") Verify selected
+    br
+    br
+    table.table.table-bordered
+        tr
+            th
+                p Select all
+                input#selectAll(type="checkbox")
+            th Date
+            th Hours
+        each hl, index in student.hourLog
+            if !hl.verified
+                tr
+                    td
+                        input.hourCheck(type="checkbox" data-date=hl.date.toString())
+                    td= hl.date.toDateString()
+                    td= hl.hours
+block scripts
+    script(src="../js/studenthours.js")

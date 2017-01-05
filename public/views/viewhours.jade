@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .container
+        h1 View hours
+        p= "Total hours logged: " + user.hourLog.reduce(function(prev, cur) { return prev + cur.hours }, 0)
+        p= "Total hours verified: " + user.hourLog.reduce(function(prev, cur) { return prev + (cur.verified ? cur.hours : 0) }, 0)
+        table.table.table-bordered
+            tr
+                th Date
+                th Hours
+                th Verified
+            each hl in user.hourLog
+                tr
+                    td= hl.date.toDateString()
+                    td= hl.hours
+                    td= hl.verified ? 'Yes' : 'No'
